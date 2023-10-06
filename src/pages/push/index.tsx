@@ -234,7 +234,7 @@ export default function Create() {
             id="file_input"
             type="file"
             style={{ minWidth: '400px', width: '100%' }}
-            onChange={(e) => handleFileChange(e.target.files[0])}
+            onChange={(e: any) => handleFileChange(e.target.files[0])}
           />
           {/* <LockIcon w={3} h={3} color="red.500" />{' '}
           <Checkbox onChange={(e) => setEncryptionRequested(e.target.checked)}>Only accessible to DAO members</Checkbox> */}
