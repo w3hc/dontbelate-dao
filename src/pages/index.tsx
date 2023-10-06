@@ -98,13 +98,17 @@ export default function Home() {
     if (block > 1) {
       console.log('if (block > 1)')
 
-      const proposals = await gov.queryFilter('ProposalCreated' as any, 95771, block)
+      const proposals: any = await gov.queryFilter('ProposalCreated' as any, 95771, block) // TODO: fix type casting
 
       try {
         let i: number = 0
         let proposalsRaw = proposal
 
-        console.log('proposals:', proposals[0].args) // https://github.com/ethers-io/ethers.js/issues/487#issuecomment-1722195086
+        console.log('proposals:', proposals[0]) // https://github.com/ethers-io/ethers.js/issues/487#issuecomment-1722195086
+
+        // console.log((<EventLog>proposals[0]).args)
+
+        // if (“args” in proposals[0]) { console.log(proposals[0]).args; }
 
         if (proposals[0].args != undefined) {
           for (i = 0; i < Number(proposals.length); i++) {

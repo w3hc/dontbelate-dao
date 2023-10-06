@@ -62,7 +62,7 @@ export default function Proposal() {
     const block = await provider.getBlockNumber()
 
     const gov = new ethers.Contract(GOV_CONTRACT_ADDRESS, GOV_CONTRACT_ABI, provider)
-    const proposals = await gov.queryFilter('ProposalCreated' as any, 95770, block)
+    const proposals: any = await gov.queryFilter('ProposalCreated' as any, 95770, block) // TODO: fix type casting
 
     console.log('block:', block)
     console.log('gov:', gov)
