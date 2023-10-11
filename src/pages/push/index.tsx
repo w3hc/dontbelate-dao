@@ -142,8 +142,9 @@ export default function Create() {
       console.log('caller address:', await signer?.getAddress())
       const propose = await gov.propose(targets, values, calldatas, PROPOSAL_DESCRIPTION)
       console.log('Propose triggered')
-      const proposeReceipt = await propose.wait(1)
-      const proposalId = proposeReceipt.events![0].args!.proposalId.toString()
+      const proposeReceipt: any = await propose.wait(1)
+      const proposals: any = await gov.queryFilter('ProposalCreated' as any, proposeReceipt.blockNumber) // TODO: fix type casting
+      const proposalId: any = proposals[0].args?.proposalId.toString()
       console.log('proposalId:', proposalId)
       // console.log('Tally link:', baseUrl + proposalId)
       const targetURL = '/proposal/' + proposalId
@@ -151,6 +152,7 @@ export default function Create() {
       router.push(targetURL)
     } catch (e) {
       console.log('error:', e)
+      setLoading(false)
     }
   }
 
