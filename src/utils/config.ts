@@ -35,7 +35,7 @@ export const artheraTestnet: Chain = {
 
 export const ETH_CHAINS = [artheraTestnet]
 
-export const GOV_CONTRACT_ADDRESS = '0x9810f207f72d29DfA8594eAB1D2900b53De1fFDB'
+export const GOV_CONTRACT_ADDRESS = '0x1d2deFFB8Db0Da9d9E19F2f49c31F04eBcf4D328'
 
 export const GOV_CONTRACT_ABI = <const>[
   {
