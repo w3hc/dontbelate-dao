@@ -62,9 +62,9 @@ export function Header(props: Props) {
             <LinkComponent href="/join">
               <MenuItem onClick={switchToJoin}>Join</MenuItem>
             </LinkComponent>
-            <LinkComponent href="/delegate">
+            {/* <LinkComponent href="/delegate">
               <MenuItem onClick={switchToDelegate}>Delegate</MenuItem>
-            </LinkComponent>
+            </LinkComponent> */}
             <LinkComponent href="/push">
               <MenuItem onClick={switchToPropose}>Submit a proposal</MenuItem>
             </LinkComponent>

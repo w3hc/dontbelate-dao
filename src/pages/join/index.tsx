@@ -95,7 +95,7 @@ export default function Join() {
       setInitialized(true)
     }
     init()
-  }, [signer])
+  }, [signer, mint])
 
   return initialized ? (
     <>

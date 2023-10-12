@@ -14,11 +14,9 @@ const baseUrl = 'https://www.tally.xyz/gov/' + TALLY_DAO_NAME + '/proposal/'
 export default function Create() {
   const [loading, setLoading] = useState(false)
   const [amount, setAmount] = useState('0')
-  const [title, setTitle] = useState('One more cool contrib')
+  const [title, setTitle] = useState('')
   const [beneficiary, setBeneficiary] = useState('0xD8a394e7d7894bDF2C57139fF17e5CBAa29Dd977')
-  const [description, setDescription] = useState(
-    'Desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc desc...'
-  )
+  const [description, setDescription] = useState('')
   const [encryptionRequested, setEncryptionRequested] = useState(false)
   const [name, setName] = useState(null)
   const [plaintext, setPlaintext] = useState('')
@@ -214,23 +212,28 @@ export default function Create() {
         <Heading as="h2">Submit a proposal</Heading>
         <br />
         <FormControl>
-          <FormLabel>Title</FormLabel>
+          <FormLabel>Project name</FormLabel>
           <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Proposal title" />
-          <FormHelperText>How should we refer to your proposal?</FormHelperText>
+          {/* <FormHelperText>How should we refer to your proposal?</FormHelperText> */}
           <br />
-          <FormLabel>Description</FormLabel>
+          <br />
+          <FormLabel>Project description</FormLabel>
           <Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="" />
           <br />
           <br />
-          <FormLabel>Amount (in AA)</FormLabel>
+          <FormLabel>Why you want to join Arthera</FormLabel>
+          <Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="" />
+          <br />
+          <br />
+          {/* <FormLabel>Amount (in AA)</FormLabel>
           <Input value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="1" />
           <FormHelperText>How much AA are you asking for?</FormHelperText>
           <br />
           <FormLabel>Target address</FormLabel>
           <Input value={beneficiary} onChange={(e) => setBeneficiary(e.target.value)} placeholder={beneficiary} />
           <FormHelperText>Who should receive the money?</FormHelperText>
-          <br />
-          <FormLabel>File</FormLabel>
+          <br /> */}
+          <FormLabel>Banner image</FormLabel>
           <input
             className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
             id="file_input"
@@ -241,7 +244,7 @@ export default function Create() {
           {/* <LockIcon w={3} h={3} color="red.500" />{' '}
           <Checkbox onChange={(e) => setEncryptionRequested(e.target.checked)}>Only accessible to DAO members</Checkbox> */}
           {/* <FormHelperText>Your file will be stored encrypted on IPFS (Filecoin)</FormHelperText> */}
-          <FormHelperText>Your file will be stored on IPFS (Filecoin), so the image you&lsquo;re sharing will be public.</FormHelperText>
+          {/* <FormHelperText>Your file will be stored on IPFS (Filecoin), so the image you&lsquo;re sharing will be public.</FormHelperText> */}
           <br />
           {!loading ? (
             <Button mt={4} colorScheme="blue" variant="outline" type="submit" onClick={submitProposal}>

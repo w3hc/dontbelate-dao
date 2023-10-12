@@ -39,7 +39,7 @@ export const UploadFile = async (selectedFile: any, fileName: any) => {
   console.log('cid:', cid)
   console.log('uri:', 'https://' + cid + '.ipfs.w3s.link' + '/' + fileName)
   if (cid === null) {
-    return 'https://bafybeif3wcwr5ii6clltrv5rcf6eqgrk47og676hghsqonmpx4wdmpxfcm.ipfs.w3s.link/old-book.avif'
+    return 'https://bafybeig5xfduwpsuixqtt4igpoin5j2g2uohad2zmabox525nhwxol3viu.ipfs.w3s.link/project-banner.jpg'
   } else {
     return 'https://' + cid + '.ipfs.w3s.link' + '/' + fileName
   }
