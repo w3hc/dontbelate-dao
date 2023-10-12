@@ -1,4 +1,4 @@
-import { Heading, Button, Badge, useToast, Text, Box } from '@chakra-ui/react'
+import { Button, Badge, useToast, Text, Box } from '@chakra-ui/react'
 import { Head } from '../../components/layout/Head'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
@@ -7,6 +7,7 @@ import { ethers } from 'ethers'
 import { GOV_CONTRACT_ADDRESS, GOV_CONTRACT_ABI, nftAbi } from '../../utils/config'
 import { useRouter } from 'next/router'
 import ReactMarkdown from 'react-markdown'
+import { HeadingComponent } from '../../components/layout/HeadingComponent'
 
 export default function Proposal() {
   const router = useRouter()
@@ -174,6 +175,9 @@ export default function Proposal() {
       const gov = new ethers.Contract(GOV_CONTRACT_ADDRESS, GOV_CONTRACT_ABI, signer)
 
       await gov.castVote(router.query.proposalId, 1)
+      await getCurrentVotes(router.query.proposalId)
+      setForVotes(forVotes + 1)
+
       toast({
         title: 'Voted!',
         position: 'bottom',
@@ -188,8 +192,8 @@ export default function Proposal() {
       toast({
         title: 'Error',
         position: 'bottom',
-        description: e.data.message,
-        status: 'info',
+        description: "You can't vote twice",
+        status: 'error',
         variant: 'subtle',
         duration: 3000,
         isClosable: true,
@@ -221,7 +225,10 @@ export default function Proposal() {
     }
     try {
       const gov = new ethers.Contract(GOV_CONTRACT_ADDRESS, GOV_CONTRACT_ABI, signer)
-      await gov.castVote(proposalId, 0)
+      await gov.castVote(router.query.proposalId, 0)
+      await getCurrentVotes(router.query.proposalId)
+      setAgainstVotes(againstVotes + 1)
+
       toast({
         title: 'Voted!',
         position: 'bottom',
@@ -233,11 +240,12 @@ export default function Proposal() {
       })
     } catch (e: any) {
       console.log('error:', e)
+
       toast({
         title: 'Error',
         position: 'bottom',
-        description: e.data.message,
-        status: 'info',
+        description: "You can't vote twice",
+        status: 'error',
         variant: 'subtle',
         duration: 3000,
         isClosable: true,
@@ -287,7 +295,17 @@ export default function Proposal() {
     <>
       <Head title={title} />
       <main>
-        <Heading as="h2">{title}</Heading>
+        {uri !== null && (
+          <>
+            {' '}
+            <Box borderRadius="lg" overflow="hidden">
+              <Image priority width="2000" height="400" alt={'project-banner'} src={uri} />
+            </Box>
+            <br />
+          </>
+        )}
+        <HeadingComponent as="h1">{title}</HeadingComponent>
+
         <Text>
           {stateBadge} For: <strong>{forVotes}</strong> | Against: <strong>{againstVotes}</strong>
         </Text>
@@ -302,19 +320,13 @@ export default function Proposal() {
 
         <div>
           <br />
+          <HeadingComponent as="h3">Project description</HeadingComponent>
+          <ReactMarkdown>{description}</ReactMarkdown>
+          <br />
+          <HeadingComponent as="h3">Why we want to join Arthera</HeadingComponent>
           <ReactMarkdown>{description}</ReactMarkdown>
           <br />
         </div>
-
-        {uri !== null && (
-          <>
-            {' '}
-            <Box maxW="sm" borderRadius="lg" overflow="hidden">
-              <Image priority width="400" height="400" alt={'attached-image'} src={uri} />
-            </Box>
-            <br />
-          </>
-        )}
 
         {/* const proposalState = ['Pending', 'Active', 'Canceled', 'Defeated', 'Succeeded', 'Queued', 'Expired', 'Executed'] */}
 

@@ -11,6 +11,7 @@ import { useEthersSigner, useEthersProvider } from '../hooks/ethersAdapter'
 import { GOV_CONTRACT_ADDRESS, GOV_CONTRACT_ABI, nftAbi } from '../utils/config'
 // import { createConfig, configureChains, mainnet } from '@wagmi/core'
 // import { publicProvider } from '@wagmi/core/providers/public'
+import Image from 'next/image'
 
 export default function Home() {
   const { isConnected } = useAccount()
@@ -193,7 +194,11 @@ export default function Home() {
   function List() {
     return (
       <div>
-        {initialized === true ? proposal.map((p) => <Item key={p.id} title={p.title} state={p.state} id={p.id} link={p.link} />) : 'loading...'}
+        {initialized === true ? (
+          proposal.map((p) => <Item key={p.id} title={p.title} state={p.state} id={p.id} link={p.link} />)
+        ) : (
+          <Image priority width="200" height="200" alt="loader" src="/reggae-loader.svg" />
+        )}
       </div>
     )
   }
@@ -211,7 +216,7 @@ export default function Home() {
         {isDisconnected || !initialized ? (
           <>
             <br />
-            {isDisconnected ? <p>Please connect your wallet.</p> : 'loading...'}
+            {isDisconnected ? <p>Please connect your wallet.</p> : <Image priority width="200" height="200" alt="loader" src="/reggae-loader.svg" />}
           </>
         ) : (
           <>
