@@ -19,7 +19,7 @@ export function Seo() {
         url: origin,
         images: [
           {
-            url: `https://bafybeiaswv3numcgmtcby6mgdlurmzisi5fzzujozyistx6ozqvutrdony.ipfs.w3s.link/arthera-logo.png`,
+            url: `./public/dontbelate-dao-image.jpg`,
             alt: `${SITE_NAME} Open Graph Image`,
           },
         ],
