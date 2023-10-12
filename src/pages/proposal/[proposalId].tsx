@@ -6,6 +6,7 @@ import { useEthersSigner, useEthersProvider } from '../../hooks/ethersAdapter'
 import { ethers } from 'ethers'
 import { GOV_CONTRACT_ADDRESS, GOV_CONTRACT_ABI, nftAbi } from '../../utils/config'
 import { useRouter } from 'next/router'
+import ReactMarkdown from 'react-markdown'
 
 export default function Proposal() {
   const router = useRouter()
@@ -301,7 +302,7 @@ export default function Proposal() {
 
         <div>
           <br />
-          <p>{description}</p>
+          <ReactMarkdown>{description}</ReactMarkdown>
           <br />
         </div>
 
