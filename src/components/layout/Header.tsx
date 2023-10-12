@@ -27,6 +27,10 @@ export function Header(props: Props) {
     setSelectedPage('Delegate')
   }
 
+  const switchToManifesto = async () => {
+    setSelectedPage('Manifesto')
+  }
+
   return (
     <Flex as="header" className={className} bg={useColorModeValue('gray.100', 'gray.900')} px={4} py={5} mb={8} alignItems="center">
       <LinkComponent href="/">
@@ -63,6 +67,9 @@ export function Header(props: Props) {
             </LinkComponent>
             <LinkComponent href="/push">
               <MenuItem onClick={switchToPropose}>Submit a proposal</MenuItem>
+            </LinkComponent>
+            <LinkComponent href="/manifesto">
+              <MenuItem onClick={switchToManifesto}>Manifesto</MenuItem>
             </LinkComponent>
           </MenuList>
         </Menu>

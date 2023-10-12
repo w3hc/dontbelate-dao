@@ -228,14 +228,14 @@ export default function Home() {
                 </a>
               </strong>
             </p>
-            <p>
+            {/* <p>
               Manifesto:{' '}
               <strong>
                 <a style={{ color: '#45a2f8' }} target="_blank" rel="noopener noreferrer" href={manifestoLink}>
                   {manifesto}
                 </a>
               </strong>
-            </p>
+            </p> */}
             <br />
             <List />
             <br />{' '}
