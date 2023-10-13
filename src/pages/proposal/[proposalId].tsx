@@ -343,30 +343,32 @@ export default function Proposal() {
         </div>
 
         {/* const proposalState = ['Pending', 'Active', 'Canceled', 'Defeated', 'Succeeded', 'Queued', 'Expired', 'Executed'] */}
-
-        <>
+        <Box mt={10} borderRadius="lg" p={5} shadow="md" borderWidth="2px">
+          <HeadingComponent as="h4">Are you in favor of this project?</HeadingComponent>
+          <br />
           <Button mr="5" colorScheme="green" variant="outline" onClick={voteYes}>
             Yes
           </Button>
           <Button colorScheme="red" variant="outline" onClick={voteNo}>
             No
           </Button>
-          {state === 'Succeeded' && (
-            <>
-              <br />
+        </Box>
 
-              {!loading ? (
-                <Button size="xs" mt={5} colorScheme="red" variant="solid" onClick={execute}>
-                  Execute
-                </Button>
-              ) : (
-                <Button isLoading loadingText="Executing..." size="xs" mt={5} colorScheme="red" variant="solid" onClick={execute}>
-                  Execute
-                </Button>
-              )}
-            </>
-          )}
-        </>
+        {state === 'Succeeded' && (
+          <>
+            <br />
+
+            {!loading ? (
+              <Button size="xs" mt={5} colorScheme="red" variant="solid" onClick={execute}>
+                Execute
+              </Button>
+            ) : (
+              <Button isLoading loadingText="Executing..." size="xs" mt={5} colorScheme="red" variant="solid" onClick={execute}>
+                Execute
+              </Button>
+            )}
+          </>
+        )}
       </main>
     </>
   ) : (
