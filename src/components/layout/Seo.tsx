@@ -19,7 +19,7 @@ export function Seo() {
         url: origin,
         images: [
           {
-            url: `./public/dontbelate-dao-image.jpg`,
+            url: `https://bafybeihhgzwwx5r5qywj52rejklchkci2ffjcv2fodndvb3hjqgjs5yv7m.ipfs.w3s.link/dontbelate-dao-image.jpg`,
             alt: `${SITE_NAME} Open Graph Image`,
           },
         ],
