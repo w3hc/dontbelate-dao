@@ -16,7 +16,12 @@ export default function Create() {
   const [amount, setAmount] = useState('0')
   const [title, setTitle] = useState('')
   const [beneficiary, setBeneficiary] = useState('0xD8a394e7d7894bDF2C57139fF17e5CBAa29Dd977')
-  const [description, setDescription] = useState('')
+  const [description, setDescription] = useState(
+    'Hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello '
+  )
+  const [whyJoin, setWhyJoin] = useState(
+    'Because because because because because because because because because because because because because because because because because because because '
+  )
   const [encryptionRequested, setEncryptionRequested] = useState(false)
   const [name, setName] = useState(null)
   const [plaintext, setPlaintext] = useState('')
@@ -34,57 +39,10 @@ export default function Create() {
     console.log('submitProposal triggered')
     // console.log('file name:', name)
     console.log('encryptionRequested:', encryptionRequested)
+    console.log('whyJoin:', whyJoin)
 
     let fileToAddInDescription: string = ''
     let plaintextString = ''
-
-    // if (encryptionRequested === true) {
-    //   try {
-    //     e.preventDefault()
-
-    //     console.log('encrypt start //////////')
-
-    //     // Medusa init
-    //     console.log('signer:', signer)
-
-    //     const medusa = await Medusa.init(MEDUSA_ORACLE_CONTRACT_ADDRESS, signer)
-    //     console.log('medusa:', medusa)
-
-    //     // prepare medusa client (https://github.com/w3hc/private-doc/blob/main/contracts/PrivateDoc.sol)
-    //     const medusaClient = new ethers.Contract(MEDUSA_CLIENT_APP_CONTRACT_ADDRESS, meduasaClientAbi, signer)
-
-    //     // get plaintextBytes
-    //     plaintextString = plaintext
-    //     console.log('plaintextString:', plaintextString)
-    //     const plaintextBytes = new TextEncoder().encode(plaintextString)
-    //     console.log('plaintextBytes:', plaintextBytes)
-
-    //     // medusa.encrypt
-    //     const { encryptedData, encryptedKey } = await medusa.encrypt(plaintextBytes, MEDUSA_CLIENT_APP_CONTRACT_ADDRESS)
-
-    //     console.log('encryptedData:', encryptedData)
-    //     console.log('encryptedKey:', encryptedKey)
-
-    //     // to Base64
-    //     const encryptedDataBase64 = Base64.fromUint8Array(encryptedData)
-
-    //     // upload (Web3.Storage)
-    //     const ipfsUrl = await UploadData(encryptedDataBase64, name)
-    //     console.log('ipfsUrl:', ipfsUrl)
-    //     fileToAddInDescription = ipfsUrl
-
-    //     console.log('[before medusaCall] encryptedKey', encryptedKey)
-
-    //     // medusa call
-    //     const medusaCall = await medusaClient.createListing(encryptedKey, ipfsUrl)
-    //     console.log('[after medusaCall] medusaCall:', medusaCall)
-    //     console.log('tx hash:', 'https://goerli.arbiscan.io/tx/' + medusaCall.hash)
-    //   } catch (e) {
-    //     console.log('error:', e)
-    //   }
-    // } else {
-    //   console.log('[no encryption] plaintext:', plaintext)
-    //   console.log('[no encryption] name:', name)
 
     // if encryption is not requested, upload the file to ipfs
     fileToAddInDescription = await UploadFile(plaintext, name)
@@ -122,6 +80,8 @@ export default function Create() {
       }
 
       // console.log('PROPOSAL_DESCRIPTION:', PROPOSAL_DESCRIPTION)
+
+      PROPOSAL_DESCRIPTION = PROPOSAL_DESCRIPTION + '\n\nWHYJOIN' + whyJoin
 
       // set targets and values
       const targets = [beneficiary]
@@ -222,7 +182,7 @@ export default function Create() {
           <br />
           <br />
           <FormLabel>Why you want to join Arthera</FormLabel>
-          <Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="" />
+          <Textarea value={whyJoin} onChange={(e) => setWhyJoin(e.target.value)} placeholder="" />
           <br />
           <br />
           {/* <FormLabel>Amount (in AA)</FormLabel>
