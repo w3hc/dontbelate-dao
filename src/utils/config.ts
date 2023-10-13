@@ -2,7 +2,7 @@ import { ThemingProps } from '@chakra-ui/react'
 import { Chain } from '@wagmi/core'
 
 export const SITE_NAME = "Dont't be late!"
-export const SITE_DESCRIPTION = 'Submit proposals and vote'
+export const SITE_DESCRIPTION = 'Submit proposals and vote.'
 export const SITE_URL = 'https://dontbelate.netlify.app/'
 
 export const THEME_INITIAL_COLOR = 'system'
@@ -35,7 +35,7 @@ export const artheraTestnet: Chain = {
 
 export const ETH_CHAINS = [artheraTestnet]
 
-export const GOV_CONTRACT_ADDRESS = '0x1d2deFFB8Db0Da9d9E19F2f49c31F04eBcf4D328'
+export const GOV_CONTRACT_ADDRESS = '0x87397eF17364DfF96239e4f5cfC5d32A77ABbCf8'
 
 export const GOV_CONTRACT_ABI = <const>[
   {
