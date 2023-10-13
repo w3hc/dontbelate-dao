@@ -16,12 +16,8 @@ export default function Create() {
   const [amount, setAmount] = useState('0')
   const [title, setTitle] = useState('')
   const [beneficiary, setBeneficiary] = useState('0xD8a394e7d7894bDF2C57139fF17e5CBAa29Dd977')
-  const [description, setDescription] = useState(
-    'Hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello '
-  )
-  const [whyJoin, setWhyJoin] = useState(
-    'Because because because because because because because because because because because because because because because because because because because '
-  )
+  const [description, setDescription] = useState('')
+  const [whyJoin, setWhyJoin] = useState('')
   const [encryptionRequested, setEncryptionRequested] = useState(false)
   const [name, setName] = useState(null)
   const [plaintext, setPlaintext] = useState('')
@@ -169,20 +165,27 @@ export default function Create() {
       <Head />
 
       <main>
+        <br />
+
         <Heading as="h2">Submit a proposal</Heading>
         <br />
+
         <FormControl>
           <FormLabel>Project name</FormLabel>
-          <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Proposal title" />
+          <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="" />
           {/* <FormHelperText>How should we refer to your proposal?</FormHelperText> */}
           <br />
           <br />
+          <br />
+
           <FormLabel>Project description</FormLabel>
           <Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="" />
+          <FormHelperText>Supports markdown</FormHelperText>
+
           <br />
           <br />
           <FormLabel>Why you want to join Arthera</FormLabel>
-          <Textarea value={whyJoin} onChange={(e) => setWhyJoin(e.target.value)} placeholder="" />
+          <Textarea value={whyJoin} onChange={(e) => setWhyJoin(e.target.value)} placeholder="Sustainability, efficiency, authenticy." />
           <br />
           <br />
           {/* <FormLabel>Amount (in AA)</FormLabel>
