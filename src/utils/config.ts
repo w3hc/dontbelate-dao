@@ -1,7 +1,7 @@
 import { ThemingProps } from '@chakra-ui/react'
 import { Chain } from '@wagmi/core'
 
-export const SITE_NAME = "Dont't be late!"
+export const SITE_NAME = "Don't be late!"
 export const SITE_DESCRIPTION = 'Submit proposals and vote.'
 export const SITE_URL = 'https://dontbelate.netlify.app/'
 
@@ -2297,8 +2297,6 @@ export const nftAbi = <const>[
 
 export const imnotlateContractAddress = '0x159025f4A1FbA5e592317b2Ff988004f8582Ca78'
 export const wpContractAddress = '0xf14D471f25df3E4A28515703D978A87247f1018b'
-
-export const TALLY_DAO_NAME = 'abyss-gov'
 
 export const NFT_ABI = [
   {
