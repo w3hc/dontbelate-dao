@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { useEthersSigner, useEthersProvider } from '../../hooks/ethersAdapter'
 import { ethers } from 'ethers'
 import { nftAbi, imnotlateContractAddress, wpContractAddress, GOV_CONTRACT_ADDRESS, GOV_CONTRACT_ABI } from '../../utils/config'
+import { useAccount } from 'wagmi'
 
 export default function Join() {
   const [initialized, setInitialized] = useState(true)
@@ -12,10 +13,12 @@ export default function Join() {
   const [isHolderOfImnotlate, setIsHolderOfImnotlate] = useState(0)
   const [isHolderOfWP, setIsHolderOfWP] = useState(0)
   const [isHolderOfDontbelate, setIsHolderOfDontbelate] = useState(0)
+  const [nftWalletLink, setNftWalletLink] = useState('')
 
   const provider = useEthersProvider()
   const signer = useEthersSigner()
   const toast = useToast()
+  const { address, isConnecting, isDisconnected } = useAccount()
 
   const scanWallet = async () => {
     try {
@@ -72,18 +75,19 @@ export default function Join() {
         duration: 2000,
         isClosable: true,
       })
+      setIsHolderOfDontbelate(Number(1))
     } catch (e: any) {
       console.log('error:', e)
       setLoading(false)
-      toast({
-        title: 'Error',
-        position: 'bottom',
-        description: e.data.message,
-        status: 'info',
-        variant: 'subtle',
-        duration: 3000,
-        isClosable: true,
-      })
+      // toast({
+      //   title: 'Error',
+      //   position: 'bottom',
+      //   description: e.data.message,
+      //   status: 'info',
+      //   variant: 'subtle',
+      //   duration: 3000,
+      //   isClosable: true,
+      // })
     }
   }
 
@@ -93,9 +97,11 @@ export default function Join() {
         scanWallet()
       }
       setInitialized(true)
+      console.log('address:', address)
+      setNftWalletLink('https://explorer-test.arthera.net/address/' + address + '?tab=tokens_erc721')
     }
     init()
-  }, [signer, mint])
+  }, [signer])
 
   return initialized ? (
     <>
@@ -106,6 +112,10 @@ export default function Join() {
           <Heading mt={5} fontSize={24}>
             Your NFTs
           </Heading>
+          <Link target="_blank" rel="noopener noreferrer" style={{ color: '#45a2f8' }} href={nftWalletLink}>
+            View all your NFTs on the explorer
+          </Link>
+
           <br />
           {!isHolderOfDontbelate ? (
             <Text>
@@ -124,7 +134,7 @@ export default function Join() {
           )}
           <Flex as="header" py={5} mb={8} alignItems="center">
             {isHolderOfImnotlate === 1 && (
-              <Box mr={5}>
+              <Box mr={5} borderRadius="lg" overflow="hidden">
                 <Image
                   priority
                   width="100"
@@ -135,7 +145,7 @@ export default function Join() {
               </Box>
             )}
             {isHolderOfWP === 1 && (
-              <Box mr={5}>
+              <Box mr={5} borderRadius="lg" overflow="hidden">
                 <Image
                   priority
                   width="100"
@@ -146,13 +156,13 @@ export default function Join() {
               </Box>
             )}
             {isHolderOfDontbelate === 1 && (
-              <Box mr={5}>
+              <Box mr={5} borderRadius="lg" overflow="hidden">
                 <Image
                   priority
-                  width="100"
-                  height="100"
+                  width="300"
+                  height="300"
                   alt="loader"
-                  src="https://bafybeiaswv3numcgmtcby6mgdlurmzisi5fzzujozyistx6ozqvutrdony.ipfs.w3s.link/arthera-logo.png"
+                  src="https://bafybeihhgzwwx5r5qywj52rejklchkci2ffjcv2fodndvb3hjqgjs5yv7m.ipfs.w3s.link/dontbelate-dao-image.jpg"
                 />{' '}
               </Box>
             )}
