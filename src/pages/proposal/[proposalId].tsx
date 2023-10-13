@@ -28,6 +28,7 @@ export default function Proposal() {
   const [values, setValues] = useState<any>()
   const [calldatas, setCalldatas] = useState<any>()
   const [rawDescription, setRawDescription] = useState<any>()
+  const [whyJoin, setWhyJoin] = useState('')
   const [forVotes, setForVotes] = useState<number>(0)
   const [againstVotes, setAgainstVotes] = useState<number>(0)
 
@@ -79,6 +80,19 @@ export default function Proposal() {
           const id = String(proposals[i].args?.proposalId)
 
           if (id == proposalId) {
+            console.log('full description:', proposals[i].args[8])
+            const inputString = proposals[i].args[8]
+
+            const searchText = 'WHYJOIN'
+
+            const startIndex = inputString.indexOf(searchText)
+
+            if (startIndex !== -1) {
+              setWhyJoin(inputString.substring(startIndex + searchText.length))
+              console.log(inputString.substring(startIndex + searchText.length))
+            } else {
+              console.log('Text not found')
+            }
             setTitle(proposals[i].args[8].substring(proposals[i].args[8][0] == '#' ? 2 : 0, proposals[i].args[8].indexOf('\n')))
             setDescription(proposals[i].args[8].substring(proposals[i].args[8].indexOf('\n'), proposals[i].args[8].indexOf('[')))
             console.log('uri:', proposals[i].args[8].substring(proposals[i].args[8].indexOf('(') + 1, proposals[i].args[8].indexOf(')')))
@@ -304,7 +318,7 @@ export default function Proposal() {
             <br />
           </>
         )}
-        <HeadingComponent as="h1">{title}</HeadingComponent>
+        <HeadingComponent as="h2">{title}</HeadingComponent>
 
         <Text>
           {stateBadge} For: <strong>{forVotes}</strong> | Against: <strong>{againstVotes}</strong>
@@ -320,11 +334,11 @@ export default function Proposal() {
 
         <div>
           <br />
-          <HeadingComponent as="h3">Project description</HeadingComponent>
+          <HeadingComponent as="h4">Project description</HeadingComponent>
           <ReactMarkdown>{description}</ReactMarkdown>
           <br />
-          <HeadingComponent as="h3">Why we want to join Arthera</HeadingComponent>
-          <ReactMarkdown>{description}</ReactMarkdown>
+          <HeadingComponent as="h4">Why we want to join Arthera</HeadingComponent>
+          <ReactMarkdown>{whyJoin}</ReactMarkdown>
           <br />
         </div>
 
