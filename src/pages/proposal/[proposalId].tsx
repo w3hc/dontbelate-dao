@@ -96,9 +96,7 @@ export default function Proposal() {
             setTitle(proposals[i].args[8].substring(proposals[i].args[8][0] == '#' ? 2 : 0, proposals[i].args[8].indexOf('\n')))
             setDescription(proposals[i].args[8].substring(proposals[i].args[8].indexOf('\n'), proposals[i].args[8].indexOf('[')))
             console.log('uri:', proposals[i].args[8].substring(proposals[i].args[8].indexOf('(') + 1, proposals[i].args[8].indexOf(')')))
-            if (proposals[i].args[8].substring(proposals[i].args[8].indexOf('(') + 1, proposals[i].args[8].indexOf(')')) !== '') {
-              setUri(proposals[i].args[8].substring(proposals[i].args[8].indexOf('(') + 1, proposals[i].args[8].indexOf(')')))
-            }
+            setUri(proposals[i].args[8].substring(proposals[i].args[8].indexOf('(') + 1, proposals[i].args[8].indexOf(')')))
             console.log(proposals[i].args[8].substring(proposals[i].args[8].indexOf('(') + 1, proposals[i].args[8].indexOf(')')))
             await getState(proposalId)
             await getCurrentVotes(proposalId)
@@ -344,7 +342,7 @@ export default function Proposal() {
 
         {/* const proposalState = ['Pending', 'Active', 'Canceled', 'Defeated', 'Succeeded', 'Queued', 'Expired', 'Executed'] */}
         <Box mt={10} borderRadius="lg" p={5} shadow="md" borderWidth="2px">
-          <HeadingComponent as="h4">Are you in favor of this project?</HeadingComponent>
+          <HeadingComponent as="h4">Are you in favor of allocating a grant to this project?</HeadingComponent>
           <br />
           <Button mr="5" colorScheme="green" variant="outline" onClick={voteYes}>
             Yes
