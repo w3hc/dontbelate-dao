@@ -4,12 +4,12 @@ import { Head } from '../../components/layout/Head'
 import { useState } from 'react'
 import { useEthersSigner, useEthersProvider } from '../../hooks/ethersAdapter'
 import { ethers } from 'ethers'
-import { GOV_CONTRACT_ADDRESS, GOV_CONTRACT_ABI, TALLY_DAO_NAME, nftAbi } from '../../utils/config'
+import { GOV_CONTRACT_ADDRESS, GOV_CONTRACT_ABI, nftAbi } from '../../utils/config'
 import { UploadFile } from '../../components/layout/UploadFile'
 import { UploadData } from '../../components/layout/UploadData'
 import { useRouter } from 'next/router'
 
-const baseUrl = 'https://www.tally.xyz/gov/' + TALLY_DAO_NAME + '/proposal/'
+// const baseUrl = 'https://www.tally.xyz/gov/' + TALLY_DAO_NAME + '/proposal/'
 
 export default function Create() {
   const [loading, setLoading] = useState(false)
@@ -180,7 +180,7 @@ export default function Create() {
 
           <FormLabel>Project description</FormLabel>
           <Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="" />
-          <FormHelperText>Supports markdown</FormHelperText>
+          <FormHelperText>Supports markdown.</FormHelperText>
 
           <br />
           <br />
@@ -197,6 +197,10 @@ export default function Create() {
           <FormHelperText>Who should receive the money?</FormHelperText>
           <br /> */}
           <FormLabel>Banner image</FormLabel>
+          <FormHelperText>
+            Recommended format: <strong>1500x500</strong> (jpeg or png)
+          </FormHelperText>
+          <br />
           <input
             className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
             id="file_input"
