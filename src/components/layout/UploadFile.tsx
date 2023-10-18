@@ -21,7 +21,8 @@ export const UploadFile = async (selectedFile: any, fileName: any) => {
   async function storeFile(files: any) {
     try {
       const client = makeStorageClient()
-      const put = await client.put([files])
+      const put = await client.put([files], { wrapWithDirectory: false })
+      // const put = await client.put([files])
       return put
     } catch (error) {
       console.error('error (storeFile):', error)
@@ -41,6 +42,7 @@ export const UploadFile = async (selectedFile: any, fileName: any) => {
   if (cid === null) {
     return 'https://bafybeihuyvg2e7vpsui6t4fqbnko35n44nogkjjx4wprh5bu3j2lkrqtym.ipfs.w3s.link/project-banner.jpg'
   } else {
-    return 'https://' + cid + '.ipfs.w3s.link' + '/' + fileName
+    // return 'https://' + cid + '.ipfs.w3s.link' + '/' + 'project-banner.jpg'
+    return 'https://' + cid + '.ipfs.w3s.link'
   }
 }
